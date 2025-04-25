@@ -1,4 +1,4 @@
-import users from 'api-server/data.json';
+import users from '../../data.json';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { pouchPrices, pouchSizes } from '../common/constants';
 import { Cat, NextDelivery, Pouch, User } from '../common/types';
@@ -22,14 +22,14 @@ export class CommsService {
   }
 
   formatCatNames(cats: Cat[]): string {
-    const catsNames = cats.map((cat) => cat.name);
+    const catNames = cats.map((cat) => cat.name);
 
-    if (catsNames.length < 3) {
-      return catsNames.join(' and ');
+    if (catNames.length < 3) {
+      return catNames.join(' and ');
     }
 
-    const lastName = catsNames.pop();
-    return catsNames.join(', ').concat(` and ${lastName}`);
+    const lastName = catNames.pop();
+    return catNames.join(', ').concat(` and ${lastName}`);
   }
 
   calculateTotalPouchPrice(cats: Cat[]): number {

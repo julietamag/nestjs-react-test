@@ -1,3 +1,10 @@
+# Participant note
+
+To run the backend cd to backend and run `yarn start`
+To run the frontend cd to frontend and run `yarn dev`
+
+I focused on writing clear, readable, and type-safe code, keeping the project structure simple and maintainable. I enjoyed the test — thank you!
+
 # KatKin's Full-stack Coding Test
 
 ## BEFORE YOU BEGIN

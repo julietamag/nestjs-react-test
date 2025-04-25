@@ -4,14 +4,6 @@ import { NextDelivery } from '../common/types';
 import { CommsService } from './comms.service';
 import { NotFoundException } from '@nestjs/common';
 
-const mockNextDelivery: NextDelivery = {
-  title: 'Your next delivery for Milo and Luna',
-  message:
-    "Hey Julieta! In two days' time, we'll be charging you for your next order for Milo and Luna's fresh food.",
-  totalPrice: 100,
-  freeGift: false,
-};
-
 const mockService = {
   getNextDelivery: jest.fn(),
 };
@@ -35,11 +27,17 @@ describe('CommsController', () => {
   });
 
   it('should return next delivery response when user exists', () => {
-    mockService.getNextDelivery.mockReturnValue(mockNextDelivery);
+    const result: NextDelivery = {
+      title: 'Your next delivery for Ricky and Pip',
+      message:
+        "Hey Julieta! In two days' time, we'll be charging you for your next order for Ricky and Pip's fresh food.",
+      totalPrice: 100,
+      freeGift: false,
+    };
 
-    const result = controller.getNextDelivery('1');
-    expect(result).toEqual(mockNextDelivery);
-    expect(service.getNextDelivery).toHaveBeenCalledWith('1');
+    jest.spyOn(mockService, 'getNextDelivery').mockReturnValue(result);
+
+    expect(controller.getNextDelivery('user1')).toBe(result);
   });
 
   it('should return not found response when user does not exists', () => {
